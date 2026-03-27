@@ -29,6 +29,7 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0f;
     private int collectedCount = 0;
+    private CollectibleObject currentHighlightedCollectible;
 
     [HideInInspector]
     public bool canMove = true;
@@ -42,6 +43,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        UpdateCollectibleHighlight();
+
         if (canMove)
         {
             Vector3 forward = transform.forward;
@@ -114,6 +117,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 collectible.Collect();
                 collectedCount++;
+                Debug.Log("Collected object count: " + collectedCount);
             }
         }
     }
@@ -130,6 +134,9 @@ public class FirstPersonController : MonoBehaviour
             return;
         }
 
+        collectedCount -= requiredCollectCountForThrow;
+        Debug.Log("Used " + requiredCollectCountForThrow + " collectibles for throw. Remaining: " + collectedCount);
+
         Transform origin = throwOrigin != null ? throwOrigin : (playerCamera != null ? playerCamera.transform : transform);
         GameObject thrownObject = Instantiate(throwableObjectPrefab, origin.position, Quaternion.identity);
 
@@ -142,5 +149,40 @@ public class FirstPersonController : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(origin.forward * throwForce, ForceMode.Impulse);
+    }
+
+    private void UpdateCollectibleHighlight()
+    {
+        Vector3 rayOrigin = playerCamera != null ? playerCamera.transform.position : transform.position + Vector3.up;
+        Vector3 rayDirection = playerCamera != null ? playerCamera.transform.forward : transform.forward;
+
+        CollectibleObject lookedCollectible = null;
+
+        if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, collectDistance, collectibleLayers, QueryTriggerInteraction.Collide))
+        {
+            lookedCollectible = hit.collider.GetComponentInParent<CollectibleObject>();
+
+            if (lookedCollectible != null && lookedCollectible.IsCollected)
+            {
+                lookedCollectible = null;
+            }
+        }
+
+        if (currentHighlightedCollectible == lookedCollectible)
+        {
+            return;
+        }
+
+        if (currentHighlightedCollectible != null)
+        {
+            currentHighlightedCollectible.SetHighlighted(false);
+        }
+
+        currentHighlightedCollectible = lookedCollectible;
+
+        if (currentHighlightedCollectible != null)
+        {
+            currentHighlightedCollectible.SetHighlighted(true);
+        }
     }
 }
