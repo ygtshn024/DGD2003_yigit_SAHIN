@@ -13,9 +13,22 @@ public class FirstPersonController : MonoBehaviour
     public float lookSpeed = 2f;
     public float lookXLimit = 75f;
 
+    [Header("Collect Settings")]
+    public float collectDistance = 3f;
+    public KeyCode collectKey = KeyCode.E;
+    public int requiredCollectCountForThrow = 10;
+    public LayerMask collectibleLayers = ~0;
+
+    [Header("Throw Settings")]
+    public KeyCode throwKey = KeyCode.F;
+    public GameObject throwableObjectPrefab;
+    public Transform throwOrigin;
+    public float throwForce = 18f;
+
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0f;
+    private int collectedCount = 0;
 
     [HideInInspector]
     public bool canMove = true;
@@ -66,6 +79,16 @@ public class FirstPersonController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(collectKey))
+        {
+            TryCollectNearby();
+        }
+
+        if (Input.GetKeyDown(throwKey))
+        {
+            TryThrowObject();
+        }
+
         if (!characterController.isGrounded)
         {
             moveDirection.y -= gravity * Time.deltaTime;
@@ -76,5 +99,48 @@ public class FirstPersonController : MonoBehaviour
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    private void TryCollectNearby()
+    {
+        Vector3 rayOrigin = playerCamera != null ? playerCamera.transform.position : transform.position + Vector3.up;
+        Vector3 rayDirection = playerCamera != null ? playerCamera.transform.forward : transform.forward;
+
+        if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, collectDistance, collectibleLayers, QueryTriggerInteraction.Collide))
+        {
+            CollectibleObject collectible = hit.collider.GetComponentInParent<CollectibleObject>();
+
+            if (collectible != null && !collectible.IsCollected)
+            {
+                collectible.Collect();
+                collectedCount++;
+            }
+        }
+    }
+
+    private void TryThrowObject()
+    {
+        if (collectedCount < requiredCollectCountForThrow)
+        {
+            return;
+        }
+
+        if (throwableObjectPrefab == null)
+        {
+            return;
+        }
+
+        Transform origin = throwOrigin != null ? throwOrigin : (playerCamera != null ? playerCamera.transform : transform);
+        GameObject thrownObject = Instantiate(throwableObjectPrefab, origin.position, Quaternion.identity);
+
+        Rigidbody rb = thrownObject.GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            rb = thrownObject.AddComponent<Rigidbody>();
+        }
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.AddForce(origin.forward * throwForce, ForceMode.Impulse);
     }
 }
