@@ -24,6 +24,7 @@ public class FirstPersonController : MonoBehaviour
     public GameObject throwableObjectPrefab;
     public Transform throwOrigin;
     public float throwForce = 18f;
+    public float throwSpawnForwardOffset = 0.35f;
 
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
@@ -138,7 +139,8 @@ public class FirstPersonController : MonoBehaviour
         Debug.Log("Used " + requiredCollectCountForThrow + " collectibles for throw. Remaining: " + collectedCount);
 
         Transform origin = throwOrigin != null ? throwOrigin : (playerCamera != null ? playerCamera.transform : transform);
-        GameObject thrownObject = Instantiate(throwableObjectPrefab, origin.position, Quaternion.identity);
+        Vector3 spawnPosition = origin.position + (origin.forward * throwSpawnForwardOffset);
+        GameObject thrownObject = Instantiate(throwableObjectPrefab, spawnPosition, origin.rotation);
 
         Rigidbody rb = thrownObject.GetComponent<Rigidbody>();
         if (rb == null)

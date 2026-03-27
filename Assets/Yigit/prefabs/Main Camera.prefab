@@ -222,6 +222,6 @@ MonoBehaviour:
     m_Bits: 4294967295
   throwKey: 102
   throwableObjectPrefab: {fileID: 2374593716159826024, guid: 64951d35fcc8a604f9743feaa556dc9e, type: 3}
-  throwOrigin: {fileID: 0}
+  throwOrigin: {fileID: 5128806535959927925}
   throwForce: 18
   canMove: 1
