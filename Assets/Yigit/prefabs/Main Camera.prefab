@@ -220,8 +220,13 @@ MonoBehaviour:
   collectibleLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  trashCountText: {fileID: 0}
+  trashCountUIParent: {fileID: 0}
+  trashCountTextObjectName: 
+  trashCountFormat: "Toplanan \xC7\xF6p: 0"
   throwKey: 102
   throwableObjectPrefab: {fileID: 2374593716159826024, guid: 64951d35fcc8a604f9743feaa556dc9e, type: 3}
   throwOrigin: {fileID: 5128806535959927925}
   throwForce: 18
+  throwSpawnForwardOffset: 0.35
   canMove: 1
