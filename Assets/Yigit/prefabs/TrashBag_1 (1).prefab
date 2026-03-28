@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7583409541276367883}
   - component: {fileID: 3906738972745810293}
   - component: {fileID: -1351174308023247544}
+  - component: {fileID: 5918273641029384756}
   m_Layer: 0
   m_Name: TrashBag_1 (1)
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.111496, y: 0.6265935, z: 0.9970703}
   m_Center: {x: 0.01581955, y: 0.5687775, z: -4.2879086}
+--- !u!114 &5918273641029384756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374593716159826024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f7e6d5c4b3a2918071625344536271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThrownObjectDestroyOnImpact
+  destroyOnlyTag: ThrowTarget

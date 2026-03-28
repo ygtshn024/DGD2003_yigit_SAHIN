@@ -239,7 +239,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void UpdateTrashCountUI()
     {
-        bool updated = TrashCountDisplay.SetCount(collectedCount, trashCountFormat);
+        bool updated = TrashCountDisplay.SetCount(collectedCount, trashCountFormat, requiredCollectCountForThrow);
 
         if (trashCountText == null)
         {
@@ -250,6 +250,7 @@ public class FirstPersonController : MonoBehaviour
         {
             string value = string.Format(trashCountFormat, collectedCount);
             trashCountText.text = value;
+            trashCountText.color = collectedCount >= requiredCollectCountForThrow ? Color.red : Color.white;
             trashCountText.enabled = true;
             trashCountText.gameObject.SetActive(true);
 

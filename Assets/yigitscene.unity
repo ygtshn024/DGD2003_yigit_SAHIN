@@ -1729,7 +1729,7 @@ Transform:
   m_GameObject: {fileID: 332666822}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8193216, y: 0.5200033, z: 9.11738}
+  m_LocalPosition: {x: 1.8193216, y: 0.5200033, z: 8.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3546,7 +3546,7 @@ Transform:
   m_GameObject: {fileID: 652877478}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8193216, y: 0.5200033, z: 9.11738}
+  m_LocalPosition: {x: 1.8193216, y: 0.5200033, z: 9.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5778,6 +5778,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrashCountDisplay
   label: {fileID: 1110727914}
   displayFormat: 'Toplanan Cop: {0}'
+  colorBelowThreshold: {r: 1, g: 1, b: 1, a: 1}
+  colorAtOrAboveThreshold: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1120468324
 GameObject:
   m_ObjectHideFlags: 0
@@ -5808,7 +5810,7 @@ Transform:
   m_GameObject: {fileID: 1120468324}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8193216, y: 0.5200033, z: 9.11738}
+  m_LocalPosition: {x: 1.8193216, y: 0.5200033, z: 6.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7213,7 +7215,7 @@ Transform:
   m_GameObject: {fileID: 1340582452}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8193216, y: 0.5200033, z: 9.11738}
+  m_LocalPosition: {x: 3.74, y: 0.5200033, z: 6.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7410,6 +7412,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e9a7a372bfadaa4abf217736ba9ce23, type: 3}
       propertyPath: m_Name
       value: group2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e9a7a372bfadaa4abf217736ba9ce23, type: 3}
+      propertyPath: m_TagString
+      value: ThrowTarget
       objectReference: {fileID: 0}
     - target: {fileID: 3269496651065703120, guid: 4e9a7a372bfadaa4abf217736ba9ce23, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
