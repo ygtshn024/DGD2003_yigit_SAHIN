@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5998343673809103713}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1620839374230114934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2552412327661196883}
+  m_Layer: 0
+  m_Name: CarryObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2552412327661196883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620839374230114934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.078, z: 1.64}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5998343673809103713}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3151723401573858391
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +97,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5128806535959927925}
+  - {fileID: 2552412327661196883}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3186382315101382337
@@ -223,10 +255,14 @@ MonoBehaviour:
   trashCountText: {fileID: 0}
   trashCountUIParent: {fileID: 0}
   trashCountTextObjectName: 
-  trashCountFormat: "Toplanan \xC7\xF6p: 0"
+  collectProgressFormat: 'Kalan: {0}'
+  allCollectiblesCompletedMessage: Tebrikler! Tum toplanabilir objeleri topladin!
+  inventoryFullHint: Copleri Bosalt "F"
   throwKey: 102
   throwableObjectPrefab: {fileID: 2374593716159826024, guid: 64951d35fcc8a604f9743feaa556dc9e, type: 3}
   throwOrigin: {fileID: 5128806535959927925}
   throwForce: 18
   throwSpawnForwardOffset: 0.35
+  carryHoldPoint: {fileID: 2552412327661196883}
+  carryLocalOffset: {x: 0, y: -0.078, z: 1.64}
   canMove: 1

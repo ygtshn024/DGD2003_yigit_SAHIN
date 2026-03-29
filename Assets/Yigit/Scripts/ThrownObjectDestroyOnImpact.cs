@@ -18,6 +18,7 @@ public class ThrownObjectDestroyOnImpact : MonoBehaviour
 
         if (ColliderMatchesTagInHierarchy(collision.collider, destroyOnlyTag))
         {
+            TrashBinProgress.NotifyHitTrashBin();
             Destroy(gameObject);
         }
     }
