@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -45,6 +46,11 @@ public class FirstPersonController : MonoBehaviour
     [Header("Timer / round")]
     [Tooltip("Süre kazaninca dursun diye bagla (bos birakilabilir).")]
     public GameCountdownTimer missionCountdownTimer;
+
+    [Header("Round end")]
+    [Tooltip("Kazaninca tebrik metnini gosterdikten kac saniye sonra ana menuye donulsun.")]
+    [SerializeField]
+    private float returnToMainMenuAfterWinSeconds = 4f;
 
     [Header("Throw Settings")]
     public KeyCode throwKey = KeyCode.F;
@@ -122,6 +128,14 @@ public class FirstPersonController : MonoBehaviour
         {
             missionCountdownTimer.FreezeCountdown();
         }
+
+        StartCoroutine(ReturnToMainMenuAfterWinRoutine());
+    }
+
+    private IEnumerator ReturnToMainMenuAfterWinRoutine()
+    {
+        yield return new WaitForSecondsRealtime(returnToMainMenuAfterWinSeconds);
+        GameFlow.LoadMainMenu();
     }
 
     public void BeginTimeExpiredSequence()
